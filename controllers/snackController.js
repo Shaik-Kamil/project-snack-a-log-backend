@@ -37,7 +37,6 @@ snacks.get('/:id', async (req, res) => {
   }
 });
 
-
 //CREATE
 snacks.post('/', checkName, checkBoolean, async (req, res) => {
   let copy = { ...req.body };
@@ -47,7 +46,14 @@ snacks.post('/', checkName, checkBoolean, async (req, res) => {
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
     .join(' ');
   copy.name = capitalized;
-  console.log({ copy });
+  // console.log({ copy });
+
+  if (!copy.image) {
+    copy = { ...copy, image: 'https://unsplash.com/photos/PTv-B97DHNI' };
+    return copy.image;
+    console.log('line 58', { copy });
+  }
+  copy.image = copy;
 
   try {
     const snack = await createSnack(copy);
@@ -56,7 +62,6 @@ snacks.post('/', checkName, checkBoolean, async (req, res) => {
     res.status(500).json({ error: 'error' });
   }
 });
-
 
 //DELETE
 snacks.delete('/:id', async (req, res) => {
