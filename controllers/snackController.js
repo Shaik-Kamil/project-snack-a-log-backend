@@ -37,6 +37,7 @@ snacks.get('/:id', async (req, res) => {
   }
 });
 
+
 //CREATE
 snacks.post('/', checkName, checkBoolean, async (req, res) => {
   let copy = { ...req.body };
@@ -55,6 +56,7 @@ snacks.post('/', checkName, checkBoolean, async (req, res) => {
     res.status(500).json({ error: 'error' });
   }
 });
+
 
 //DELETE
 snacks.delete('/:id', async (req, res) => {
