@@ -19,17 +19,12 @@ const getSnack = async (id) => {
 };
 
 const createSnack = async (snack) => {
+  let { name, fiber, protein, added_sugar, is_healthy, image } = snack;
   try {
+    if (!image) image = 'https://unsplash.com/photos/PTv-B97DHNI';
     const newSnack = await db.one(
       'INSERT INTO snacks (name,fiber,protein, added_sugar, is_healthy,image) VALUES($1, $2, $3, $4, $5, $6) RETURNING *',
-      [
-        snack.name,
-        snack.fiber,
-        snack.protein,
-        snack.added_sugar,
-        snack.is_healthy,
-        snack.image,
-      ]
+      [name, fiber, protein, added_sugar, is_healthy, image]
     );
     return newSnack;
   } catch (error) {

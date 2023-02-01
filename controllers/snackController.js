@@ -48,13 +48,6 @@ snacks.post('/', checkName, checkBoolean, async (req, res) => {
   copy.name = capitalized;
   // console.log({ copy });
 
-  if (!copy.image) {
-    copy = { ...copy, image: 'https://unsplash.com/photos/PTv-B97DHNI' };
-    return copy.image;
-    console.log('line 58', { copy });
-  }
-  copy.image = copy;
-
   try {
     const snack = await createSnack(copy);
     res.status(200).json(snack);
